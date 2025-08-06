@@ -1,11 +1,221 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <title>Donation Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #8f8282;
+      padding: 20px;
+    }
+
+    form {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(240, 3, 3, 0.904);
+      max-width: 700px;
+      margin: auto;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: 500;
+    }
+
+    .section-title {
+      font-weight: bold;
+      color: #f30505;
+      font-size: 18px;
+      margin-top: 30px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="number"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+      font-size: 14px;
+    }
+
+    input[type="radio"],
+    input[type="checkbox"] {
+      margin-right: 8px;
+      transform: scale(1.2);
+      vertical-align: middle;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    button[type="submit"] {
+      background-color: #28a745;
+      color: white;
+    }
+
+    button[type="reset"] {
+      background-color: #dc3545;
+      color: white;
+      margin-right: 10px;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+  </style>
 </head>
 <body>
-    <h1>world how are you ?</h1>
+  <form onsubmit="return validateForm()">
+    <div class="section-title">Donor Information</div>
+    <label>First Name* <input type="text" id="firstName" required></label>
+    <label>Last Name* <input type="text" id="lastName" required></label>
+    <label>Company <input type="text"></label>
+    <label>Address* <input type="text" id="address1" required></label>
+
+    <label>Country*
+      <select id="country" required onchange="updateStates()">
+        <option value="">Select a Country</option>
+        <option value="USA">USA</option>
+        <option value="BD">Bangladesh</option>
+        <option value="PAK">Pakistan</option>
+        <option value="ARG">Argentina</option>
+      </select>
+    </label>
+
+    <label>State*
+      <select id="state" required onchange="updateStates()"> 
+        <option value="">Select a State</option>
+        <option value="USA">USA</option>
+        <option value="BD">Bangladesh</option>
+        <option value="PAK">Pakistan</option>
+        <option value="ARG">Argentina</option>
+      </select>
+    </label>
+
+    <label>Zip Code* <input type="number" id="zip" required></label>
+    <label>Phone <input type="text"></label>
+    <label>Fax <input type="text"></label>
+    <label>Email* <input type="email" id="email" required></label>
+
+    <label>Donation Amount*</label>
+    <label><input type="radio" name="amount" value="0" checked> None</label>
+    <label><input type="radio" name="amount" value="50"> $50</label>
+    <label><input type="radio" name="amount" value="75"> $75</label>
+    <label><input type="radio" name="amount" value="100"> $100</label>
+    <label><input type="radio" name="amount" value="250"> $250</label>
+    <label><input type="radio" name="amount" value="other"> Other: <input type="number" id="otherAmount"></label>
+
+    <label><input type="checkbox" id="recurring"> I am interested in giving on a regular basis</label>
+    <label>Monthly Credit Card $ <input type="number"></label>
+    <label>For <input type="number"> Months</label>
+
+    <div class="section-title">Honorarium and Memorial Donation Information</div>
+    <label>
+      <input type="radio" name="honor" value="honor"> To Honor
+      <input type="radio" name="honor" value="memory"> In Memory of
+    </label>
+    <label>Name <input type="text"></label>
+    <label>Acknowledge Donation to <input type="text"></label>
+    <label>Address <input type="text"></label>
+    <label>City <input type="text" id="city"></label>
+    <label>State 
+
+      <select id="state" required onchange="updateStates()"> 
+        <option value="">Select a State</option>
+        <option value="USA">USA</option>
+        <option value="BD">Bangladesh</option>
+        <option value="PAK">Pakistan</option>
+        <option value="ARG">Argentina</option>
+      </select>
+    </label>
+    </label>
+    <label>Zip Code* <input type="number" id="zip" required></label>
+
+    <div class="section-title">Additional Information</div>
+    <label>Name (as you want it to appear) <input type="text"></label>
+    <label><input type="checkbox"> I would like my gift to remain anonymous.</label>
+    <label><input type="checkbox"> My employer offers a matching gift program.I will mail the matching gift form</label>
+    <label><input type="checkbox"> Please save the cost of acknowlegging this gift by not mailing a thank you letter</label>
+
+    <label>Comments<br>
+      <textarea rows="4" cols="50"></textarea>
+    </label>
+
+    <label>How may we contact you?</label>
+    <label><input type="checkbox"> E-mail</label>
+    <label><input type="checkbox"> Postal Mail</label>
+    <label><input type="checkbox"> Telephone</label>
+    <label><input type="checkbox"> Fax</label>
+
+    <label>I would like to receive newsletters by:</label>
+    <label><input type="checkbox"> E-mail</label>
+    <label><input type="checkbox"> Postal Mail</label>
+
+    <label><input type="checkbox"> I would like information about volunteering</label>
+
+    <br><br>
+    <button type="reset">Reset</button>
+    <button type="submit">Continue</button>
+  </form>
+
+  <script>
+    function validateForm() {
+      const requiredFields = ['firstName', 'lastName', 'address1', 'city', 'zip', 'email'];
+      for (let id of requiredFields) {
+        const field = document.getElementById(id);
+        if (!field.value.trim()) {
+          alert('Please fill out all required fields.');
+          field.focus();
+          return false;
+        }
+      }
+      return true;
+    }
+
+    function updateStates() {
+      const country = document.getElementById("country").value;
+      const state = document.getElementById("state");
+
+      state.innerHTML = '<option value="">Select a State</option>';
+
+      let options = [];
+
+      if (country === "BD") {
+        options = ["Dhaka", "Cumilla", "Barishal", "Rangpur", "Dinajpur"];
+      } else if (country === "USA") {
+        options = ["New York", "Houston", "Chicago"];
+      } else if (country === "ARG") {
+        options = ["Mendoza", "La Plata", "Salta"];
+      } else if (country === "PAK") {
+        options = ["Karachi", "Lahore", "Multan"];
+      }
+
+      for (let opt of options) {
+        const optionElement = document.createElement("option");
+        optionElement.value = opt;
+        optionElement.textContent = opt;
+        state.appendChild(optionElement);
+      }
+    }
+  </script>
 </body>
-</html>s
+</html>
