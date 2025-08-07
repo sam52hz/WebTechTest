@@ -1,221 +1,147 @@
 <!DOCTYPE html>
 <html>
+<link rel="stylesheet" href="midlab1.css" />
 <head>
   <title>Donation Form</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #8f8282;
-      padding: 20px;
-    }
-
-    form {
-      background-color: #fff;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(240, 3, 3, 0.904);
-      max-width: 700px;
-      margin: auto;
-    }
-
-    label {
-      display: block;
-      margin-top: 15px;
-      font-weight: 500;
-    }
-
-    .section-title {
-      font-weight: bold;
-      color: #f30505;
-      font-size: 18px;
-      margin-top: 30px;
-      border-bottom: 1px solid #ccc;
-      padding-bottom: 5px;
-    }
-
-    input[type="text"],
-    input[type="email"],
-    input[type="number"],
-    select,
-    textarea {
-      width: 100%;
-      padding: 10px;
-      margin-top: 5px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      box-sizing: border-box;
-      font-size: 14px;
-    }
-
-    input[type="radio"],
-    input[type="checkbox"] {
-      margin-right: 8px;
-      transform: scale(1.2);
-      vertical-align: middle;
-    }
-
-    textarea {
-      resize: vertical;
-    }
-
-    button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      font-size: 16px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    button[type="submit"] {
-      background-color: #28a745;
-      color: white;
-    }
-
-    button[type="reset"] {
-      background-color: #dc3545;
-      color: white;
-      margin-right: 10px;
-    }
-
-    button:hover {
-      opacity: 0.9;
-    }
-  </style>
 </head>
 <body>
-  <form onsubmit="return validateForm()">
-    <div class="section-title">Donor Information</div>
-    <label>First Name* <input type="text" id="firstName" required></label>
-    <label>Last Name* <input type="text" id="lastName" required></label>
-    <label>Company <input type="text"></label>
-    <label>Address* <input type="text" id="address1" required></label>
 
-    <label>Country*
-      <select id="country" required onchange="updateStates()">
-        <option value="">Select a Country</option>
+  <form>
+    <h3>Donor Information</h3>
+
+   <label><b>First Name*</b></label>
+<input type="text" required><br><br>
+
+<label><b>Last Name*</b></label>
+<input type="text" required><br><br>
+
+<label><b>Company</b></label>
+<input type="text"><br><br>
+
+<label><b>Address*</b></label>
+<input type="text" required><br><br>
+
+    <label><b>Country*</b></label>
+      <select required>
         <option value="USA">USA</option>
         <option value="BD">Bangladesh</option>
         <option value="PAK">Pakistan</option>
         <option value="ARG">Argentina</option>
       </select>
-    </label>
+    </label><br><br>
 
-    <label>State*
-      <select id="state" required onchange="updateStates()"> 
-        <option value="">Select a State</option>
+  <label><b>State*</b></label>
+<select required>
+  <optgroup label="Bangladesh">
+    <option value="Dhaka">Dhaka</option>
+    <option value="Cumilla">AIUB</option>
+    <option value="Cumilla">Sirajganj</option>
+  </optgroup>
+  <optgroup label="USA">
+    <option value="New York">New York</option>
+    <option value="Houston">Houston</option>
+    <option value="Chicago">Chicago</option>
+  </optgroup>
+  <optgroup label="Pakistan">
+    <option value="Karachi">Karachi</option>
+    <option value="Lahore">Lahore</option>
+    <option value="Multan">Multan</option>
+  </optgroup>
+  <optgroup label="Argentina">
+    <option value="Mendoza">Mendoza</option>
+    <option value="La Plata">La Plata</option>
+    <option value="Salta">Salta</option>
+  </optgroup>
+</select>
+
+
+    <label><b>Zip Code*</b></label>
+<input type="text" required><br><br>
+    <label><b>Phone*</b></label>
+<input type="text" required><br><br>
+    <label><b>Fax</b></label>
+<input type="text" required><br><br>
+<label><b>Email*</b></label>
+<input type="email" required pattern=".+@gmail\.com"><br><br>
+
+    <label><b>Donation Amount*</label><br>
+    <label><input type="radio" name="amount" value="0" checked> None</label><br>
+    <label><input type="radio" name="amount" value="50"> $50</label><br>
+    <label><input type="radio" name="amount" value="75"> $75</label><br>
+    <label><input type="radio" name="amount" value="100"> $100</label><br>
+    <label><input type="radio" name="amount" value="250"> $250</label><br>
+    <label><input type="radio" name="amount" value="other"> Other: <input type="number"></label><br><br>
+
+    <label><b><input type="checkbox"> I am interested in giving on a regular basis</label><br><br><b>
+    <label><b>Monthly Credit Card $ <input type="number"></label><br><br><b>
+    <label><b>For Months <input type="number"></label><br><br><b>
+
+    <h3>Honorarium and Memorial Donation Information</h3>
+    <label><input type="radio" name="honor" value="honor"> To Honor</label>
+    <label><input type="radio" name="honor" value="memory"> In Memory of</label><br><br>
+    <label><b>Name <input type="text"></label><br><br><b>
+    <label><b>Acknowledge Donation to <input type="text"></label><br><br><b>
+    <label><b>Address <input type="text"></label><br><br><b>
+    <label><b>State</b></label>
+      <select required>
         <option value="USA">USA</option>
         <option value="BD">Bangladesh</option>
         <option value="PAK">Pakistan</option>
         <option value="ARG">Argentina</option>
       </select>
-    </label>
+    </label><br><br>
+ <label><b>City</b></label>
+<select required>
+  <optgroup label="Bangladesh">
+    <option value="Dhaka">Dhaka</option>
+    <option value="Cumilla">Sirajganj</option>
+    <option value="Cumilla">Cox's Bazar</option>
+  </optgroup>
+  <optgroup label="USA">
+    <option value="New York">New York</option>
+    <option value="Houston">Houston</option>
+    <option value="Chicago">Chicago</option>
+  </optgroup>
+  <optgroup label="Pakistan">
+    <option value="Karachi">Karachi</option>
+    <option value="Lahore">Lahore</option>
+    <option value="Multan">Multan</option>
+  </optgroup>
+  <optgroup label="Argentina">
+    <option value="Mendoza">Mendoza</option>
+    <option value="La Plata">La Plata</option>
+    <option value="Salta">Salta</option>
+  </optgroup>
+</select>
+    </label><br><br>
+    <label><b>Zip Code* <input type="number" required></label><br><br><b>
 
-    <label>Zip Code* <input type="number" id="zip" required></label>
-    <label>Phone <input type="text"></label>
-    <label>Fax <input type="text"></label>
-    <label>Email* <input type="email" id="email" required></label>
+    <h3>Additional Information</h3>
+    <label>Name (as you want it to appear) <input type="text"></label><br><br>
+    <label><input type="checkbox"> I would like my gift to remain anonymous.</label><br>
+    <label><input type="checkbox"> My employer offers a matching gift program. I will mail the matching gift form</label><br>
+    <label><input type="checkbox"> Please save the cost of acknowledging this gift by not mailing a thank you letter</label><br><br>
 
-    <label>Donation Amount*</label>
-    <label><input type="radio" name="amount" value="0" checked> None</label>
-    <label><input type="radio" name="amount" value="50"> $50</label>
-    <label><input type="radio" name="amount" value="75"> $75</label>
-    <label><input type="radio" name="amount" value="100"> $100</label>
-    <label><input type="radio" name="amount" value="250"> $250</label>
-    <label><input type="radio" name="amount" value="other"> Other: <input type="number" id="otherAmount"></label>
+    <label><b>Comments<br><b>
+      <textarea rows="2" cols="50"></textarea>
+    </label><br><br>
 
-    <label><input type="checkbox" id="recurring"> I am interested in giving on a regular basis</label>
-    <label>Monthly Credit Card $ <input type="number"></label>
-    <label>For <input type="number"> Months</label>
+    <label><b>How may we contact you?</label><br><b>
+    <label><input type="checkbox"> E-mail</label><br>
+    <label><input type="checkbox"> Postal Mail</label><br>
+    <label><input type="checkbox"> Telephone</label><br>
+    <label><input type="checkbox"> Fax</label><br><br>
 
-    <div class="section-title">Honorarium and Memorial Donation Information</div>
-    <label>
-      <input type="radio" name="honor" value="honor"> To Honor
-      <input type="radio" name="honor" value="memory"> In Memory of
-    </label>
-    <label>Name <input type="text"></label>
-    <label>Acknowledge Donation to <input type="text"></label>
-    <label>Address <input type="text"></label>
-    <label>City <input type="text" id="city"></label>
-    <label>State 
+    <label><b>I would like to receive newsletters by:</label><br><b>
+    <label><input type="checkbox"> E-mail</label><br>
+    <label><input type="checkbox"> Postal Mail</label><br><br>
 
-      <select id="state" required onchange="updateStates()"> 
-        <option value="">Select a State</option>
-        <option value="USA">USA</option>
-        <option value="BD">Bangladesh</option>
-        <option value="PAK">Pakistan</option>
-        <option value="ARG">Argentina</option>
-      </select>
-    </label>
-    </label>
-    <label>Zip Code* <input type="number" id="zip" required></label>
+    <label><b><input type="checkbox"> I would like information about volunteering</label><br><br><b>
+      <textarea rows="2" cols="50"></textarea>
 
-    <div class="section-title">Additional Information</div>
-    <label>Name (as you want it to appear) <input type="text"></label>
-    <label><input type="checkbox"> I would like my gift to remain anonymous.</label>
-    <label><input type="checkbox"> My employer offers a matching gift program.I will mail the matching gift form</label>
-    <label><input type="checkbox"> Please save the cost of acknowlegging this gift by not mailing a thank you letter</label>
-
-    <label>Comments<br>
-      <textarea rows="4" cols="50"></textarea>
-    </label>
-
-    <label>How may we contact you?</label>
-    <label><input type="checkbox"> E-mail</label>
-    <label><input type="checkbox"> Postal Mail</label>
-    <label><input type="checkbox"> Telephone</label>
-    <label><input type="checkbox"> Fax</label>
-
-    <label>I would like to receive newsletters by:</label>
-    <label><input type="checkbox"> E-mail</label>
-    <label><input type="checkbox"> Postal Mail</label>
-
-    <label><input type="checkbox"> I would like information about volunteering</label>
-
-    <br><br>
     <button type="reset">Reset</button>
     <button type="submit">Continue</button>
   </form>
 
-  <script>
-    function validateForm() {
-      const requiredFields = ['firstName', 'lastName', 'address1', 'city', 'zip', 'email'];
-      for (let id of requiredFields) {
-        const field = document.getElementById(id);
-        if (!field.value.trim()) {
-          alert('Please fill out all required fields.');
-          field.focus();
-          return false;
-        }
-      }
-      return true;
-    }
-
-    function updateStates() {
-      const country = document.getElementById("country").value;
-      const state = document.getElementById("state");
-
-      state.innerHTML = '<option value="">Select a State</option>';
-
-      let options = [];
-
-      if (country === "BD") {
-        options = ["Dhaka", "Cumilla", "Barishal", "Rangpur", "Dinajpur"];
-      } else if (country === "USA") {
-        options = ["New York", "Houston", "Chicago"];
-      } else if (country === "ARG") {
-        options = ["Mendoza", "La Plata", "Salta"];
-      } else if (country === "PAK") {
-        options = ["Karachi", "Lahore", "Multan"];
-      }
-
-      for (let opt of options) {
-        const optionElement = document.createElement("option");
-        optionElement.value = opt;
-        optionElement.textContent = opt;
-        state.appendChild(optionElement);
-      }
-    }
-  </script>
 </body>
 </html>
